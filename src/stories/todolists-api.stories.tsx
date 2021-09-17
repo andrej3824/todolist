@@ -50,7 +50,7 @@ export const UpdateTodo = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
         const todolistId = 'c9fa4faa-2e5d-4f86-8018-06133acb28aa'
-        const title: 'React'
+        const title = 'React'
         todolistApi.updateTodoTitle(todolistId, title)
             .then((res) => {
                 setState(res.data)
