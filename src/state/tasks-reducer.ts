@@ -67,7 +67,6 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
     switch (action.type) {
 
 
-
         case "SET-TODOLISTS": {
             let stateCopy = {...state}
             action.todos.forEach((tl) => {
@@ -147,15 +146,14 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string): SetTasks
 
 //THUNK
 
-export const fetchTasksThunk = (disptch: Dispatch, todolistId: string) => {
-
-
-    todolistsAPI.getTasks(todolistId)
-        .then((res) => {
-            let tasks = res.data.items
-            //dispatch tasks
-        })
-
+export const fetchTasksTC = (todolistId: string) => {
+    return (dispatch: Dispatch) => {
+        todolistsAPI.getTasks(todolistId)
+            .then((res) => {
+                let tasks = res.data.items
+                //dispatch tasks
+            })
+    }
 }
 
 
