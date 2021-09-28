@@ -100,7 +100,7 @@ export const setTodolistsAC = (todos: Array<TodolistType>) => {
 export type setTodolistsActionType = ReturnType<typeof setTodolistsAC>
 
 //THUNK
-export const fetchTodolistThunk = (dispatch: Dispatch, getState: () => AppRootStateType): void => {
+export const fetchTodolistTC = () => (dispatch: Dispatch, getState: () => AppRootStateType): void => {
 
     //1. side effect (ajax requests, localstorage...)
 

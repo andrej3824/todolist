@@ -160,5 +160,10 @@ export const fetchTasksTC = (todolistId: string) => {
     }
 }
 
+export const removeTaskTC = () => {
+
+}
+
+
 
 

@@ -7,7 +7,7 @@ import {Menu} from '@material-ui/icons';
 import {
     addTodolistAC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC, fetchTodolistThunk,
+    changeTodolistTitleAC, fetchTodolistTC,
     FilterValuesType,
     removeTodolistAC, setTodolistsAC,
     TodolistDomainType
@@ -32,7 +32,7 @@ function App() {
 
 
     useEffect(() => {
-            dispatch(fetchTodolistThunk)
+            dispatch(fetchTodolistTC())
     },[])
 
     const removeTask = useCallback(function (id: string, todolistId: string) {
