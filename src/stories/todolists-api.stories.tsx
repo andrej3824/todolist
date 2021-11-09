@@ -8,7 +8,7 @@ export default {
 const settings = {
     withCredentials: true,
     headers: {
-        'API-KEY' : '77b5659d-85ac-46a3-88e2-a77e18a50610'
+        'API-KEY': '77b5659d-85ac-46a3-88e2-a77e18a50610'
     }
 }
 
@@ -34,8 +34,15 @@ export const CreateTodolist = () => {
     useEffect(() => {
         const title = 'REACT'
 
-        axios.post('https://social-network.samuraijs.com/api/1.1/todo-lists', {title})
-
+        let promise = axios.post('https://social-network.samuraijs.com/api/1.1/todo-lists', {title}, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': '77b5659d-85ac-46a3-88e2-a77e18a50610'
+            }
+        })
+        promise.then((res) => {
+            setState(res.data)
+        })
     }, [])
 
     return <div> {JSON.stringify(state)}</div>
