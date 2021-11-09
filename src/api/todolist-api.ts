@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.1',
+    baseURL: 'https://social-network.samuraijs.com/api/1.1/',
     withCredentials: true,
     headers: {
         'API-KEY': '77b5659d-85ac-46a3-88e2-a77e18a50610'
@@ -23,16 +23,38 @@ type TodoResType = {
 }
 
 export const todolistApi = {
-    getTodolists() {
-        return instance.get<Array<TodoResType>>('/todo-lists',)
+    getTodo() {
+        return instance.get("todo-lists")
     },
     createTodo(title: string) {
-        return instance.post<CommonResponseType<{item: TodoResType}>>('/todo-lists', {title})
+        return instance.post('todo-lists', {title})
     },
     deleteTodo(todolistId: string) {
-        return instance.delete<CommonResponseType<{}>>(`/todo-lists/${todolistId}`)
+        return instance.delete(`todo-lists/${todolistId}`)
     },
     updateTodoTitle(todolistId: string, title: string) {
-        return instance.put<CommonResponseType<{}>>(`/todo-lists/${todolistId}`, {title})
+        return instance.put(`todo-lists/${todolistId}`, {title})
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

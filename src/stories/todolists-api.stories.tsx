@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import axios from "axios";
+import {todolistApi} from "../api/todolist-api";
 
 export default {
     title: 'API'
@@ -16,15 +16,11 @@ export const GetTodolists = () => {
     const [state, setState] = useState<any>(null)
 
     useEffect(() => {
-
-        let promise = axios.get("https://social-network.samuraijs.com/api/1.1/todo-lists", {
-            withCredentials: true
-        })
-        promise.then((res) => {
-            let todos = res.data
-            setState(todos)
-        })
-
+        todolistApi.getTodo()
+            .then((res) => {
+                let todos = res.data
+                setState(todos)
+            })
     }, [])
 
     return <div> {JSON.stringify(state)}</div>
@@ -32,17 +28,11 @@ export const GetTodolists = () => {
 export const CreateTodolist = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        const title = 'REACT'
-
-        let promise = axios.post('https://social-network.samuraijs.com/api/1.1/todo-lists', {title}, {
-            withCredentials: true,
-            headers: {
-                'API-KEY': '77b5659d-85ac-46a3-88e2-a77e18a50610'
-            }
-        })
-        promise.then((res) => {
-            setState(res.data)
-        })
+        const title = 'REDUX'
+        todolistApi.createTodo(title)
+            .then((res) => {
+                setState(res.data)
+            })
     }, [])
 
     return <div> {JSON.stringify(state)}</div>
@@ -51,13 +41,10 @@ export const DeleteTodolist = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
         const todolistId = '3995f935-7fdb-4607-aac6-26a8d76a1ef7';
-        const promise = axios.delete(`https://social-network.samuraijs.com/api/1.1/todo-lists/${todolistId}`, settings).then((res) => {
-            setState(res.data);
-        })
-        promise.then((res) => {
-
-        })
-
+        todolistApi.deleteTodo(todolistId)
+            .then((res) => {
+                setState(res.data)
+            })
     }, [])
 
     return <div> {JSON.stringify(state)}</div>
@@ -65,6 +52,12 @@ export const DeleteTodolist = () => {
 export const UpdateTodolistTitle = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
+        const todolistId = 'c9fa4faa-2e5d-4f86-8018-06133acb28aa'
+        const title = 'ANGULAR'
+        todolistApi.updateTodoTitle(todolistId, title)
+            .then((res) => {
+                setState(res.data)
+            })
     }, [])
 
     return <div> {JSON.stringify(state)}</div>
