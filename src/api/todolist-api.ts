@@ -15,7 +15,7 @@ type CommonResponseType<T> = {
     data: T
 }
 
-type TodoResType = {
+type TodoType = {
     id: string
     addedDate: string
     order: number
@@ -24,16 +24,16 @@ type TodoResType = {
 
 export const todolistApi = {
     getTodo() {
-        return instance.get("todo-lists")
+        return instance.get<Array<TodoType>>("todo-lists")
     },
     createTodo(title: string) {
-        return instance.post('todo-lists', {title})
+        return instance.post<CommonResponseType<{item: TodoType}>>('todo-lists', {title})
     },
     deleteTodo(todolistId: string) {
-        return instance.delete(`todo-lists/${todolistId}`)
+        return instance.delete<CommonResponseType<{}>>(`todo-lists/${todolistId}`)
     },
     updateTodoTitle(todolistId: string, title: string) {
-        return instance.put(`todo-lists/${todolistId}`, {title})
+        return instance.put<CommonResponseType<{}>>(`todo-lists/${todolistId}`, {title})
     }
 }
 
